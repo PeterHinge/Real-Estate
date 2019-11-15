@@ -3,26 +3,26 @@ class Calculator {
 		this.calculartorType = null;
 		this.country = null;
 
-		this.housePrize = null;
-		this.optimalDownPayment = null;
-		this.morgageLoan = null;
-		this.bankLoan = null;
+		this.housePrize = 0;
+		this.optimalDownPayment = 0;
+		this.morgageLoan = 0;
+		this.bankLoan = 0;
 
-		this.morgageLoanPayback = null;
-		this.morgageLoanInterest = null;
+		this.morgageLoanPayback = 0;
+		this.morgageLoanInterest = 0;
 
-		this.totalInvestment = null;
+		this.totalInvestment = 0;
 
-		this.grossIncome = null;
-		this.totalExpenses = null;
+		this.grossIncome = 0;
+		this.totalExpenses = 0;
 
-		this.netIncome = null;
-		this.returnOnInvestment = null;
-		this.cashFlow = null;
+		this.netIncome = 0;
+		this.returnOnInvestment = 0;
+		this.cashFlow = 0;
 
-		document.getElementById('housePrize').value = 0;
-		document.getElementById('grossIncome').value = 0;
-		document.getElementById('totalExpenses').value = 0;
+		document.getElementById('housePrizeInput').value = 0;
+		document.getElementById('grossIncomeInput').value = 0;
+		document.getElementById('totalExpensesInput').value = 0;
 
 		this.simpleSetup()
 	};
@@ -37,9 +37,9 @@ class Calculator {
 	}
 
 	calculate() {
-		this.housePrize = Number(document.getElementById('housePrize').value);
-		this.grossIncome = Number(document.getElementById('grossIncome').value);
-		this.totalExpenses = Number(document.getElementById('totalExpenses').value);
+		this.housePrize = Number(document.getElementById('housePrizeInput').value);
+		this.grossIncome = Number(document.getElementById('grossIncomeInput').value);
+		this.totalExpenses = Number(document.getElementById('totalExpensesInput').value);
 
 		this.optimalDownPayment = this.housePrize * 0.2;
 		this.morgageLoan = this.housePrize * 0.8;
@@ -64,11 +64,12 @@ class Calculator {
 		//ROI and cash flow
 		if (this.calculartorType == 'simple') {
 			this.netIncome = this.grossIncome - this.totalExpenses;
+			this.netIncomeTaxed = this.netIncome * 0.78; // 22% skat ved virksomhedsordning
 
-			this.returnOnInvestment = ((this.netIncome * 12) / this.totalInvestment) * 100;
+			this.returnOnInvestment = ((this.netIncomeTaxed * 12) / this.totalInvestment) * 100;
 			console.log("ROI: " + this.returnOnInvestment);
 
-			this.cashFlow = this.netIncome - this.morgageLoanPayback;
+			this.cashFlow = this.netIncomeTaxed - this.morgageLoanPayback;
 			console.log("Cash flow: " + this.cashFlow);
 		} else {
 			this.totalInvestment = 0;
