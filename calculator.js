@@ -66,9 +66,9 @@ class Calculator {
 			this.netIncome = this.grossIncome - this.totalExpenses;
 			this.netIncomeTaxed = this.netIncome * 0.78; // 22% skat ved virksomhedsordning
 
-			this.returnOnInvestment = ((this.netIncomeTaxed * 12) / this.totalInvestment) * 100;
+			this.returnOnInvestment = (((this.netIncomeTaxed * 12) / this.totalInvestment) * 100).toFixed(2);
 
-			this.cashFlow = this.netIncomeTaxed - this.morgageLoanPayback;
+			this.cashFlow = (this.netIncomeTaxed - this.morgageLoanPayback).toFixed(0);
 		} else {
 			this.totalInvestment = 0;
 		}

@@ -7,6 +7,7 @@ document.getElementById("calculateButton").onclick = function() {
 	document.getElementById("totalExpensesOutput").innerHTML = cal.totalExpenses;
 	document.getElementById("downPayment").innerHTML = cal.optimalDownPayment;
 	document.getElementById("morgageLoan").innerHTML = cal.morgageLoan;
+	document.getElementById("totalInvestment").innerHTML = cal.totalInvestment;
 	document.getElementById("returnOnInvestment").innerHTML = cal.returnOnInvestment;
 	document.getElementById("cashFlow").innerHTML = cal.cashFlow;
 }
