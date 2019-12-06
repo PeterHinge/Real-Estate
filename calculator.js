@@ -8,7 +8,7 @@ class Calculator {
 		this.morgageLoan = 0;
 		this.bankLoan = 0;
 
-		this.morgageLoanPayback = 0;
+		this.morgageLoanPayment = 0;
 		this.morgageLoanInterest = 0;
 
 		this.totalInvestment = 0;
@@ -21,8 +21,8 @@ class Calculator {
 		this.cashFlow = 0;
 
 		document.getElementById('housePrizeInput').value = 0;
-		document.getElementById('grossIncomeInput').value = 0;
-		document.getElementById('totalExpensesInput').value = 0;
+		document.getElementById('monthlyRentalInput').value = 0;
+		document.getElementById('monthlyExpensesInput').value = 0;
 
 		this.simpleSetup()
 	};
@@ -38,8 +38,8 @@ class Calculator {
 
 	calculate() {
 		this.housePrize = Number(document.getElementById('housePrizeInput').value);
-		this.grossIncome = Number(document.getElementById('grossIncomeInput').value);
-		this.totalExpenses = Number(document.getElementById('totalExpensesInput').value);
+		this.grossIncome = Number(document.getElementById('monthlyRentalInput').value);
+		this.totalExpenses = Number(document.getElementById('monthlyExpensesInput').value);
 
 		this.optimalDownPayment = this.housePrize * 0.2;
 		this.morgageLoan = this.housePrize * 0.8;
@@ -52,8 +52,8 @@ class Calculator {
 			this.totalInvestment += this.morgageLoan * 0.0145 + 1640; //Tingslysningsafgift af  realkreditlån
 			this.totalInvestment += this.morgageLoan * 0.0015; //Omkostninger af realkreditlån
 
-			this.morgageLoanPayback = this.morgageLoan * 0.0028;
-			this.morgageLoanInterest = this.morgageLoan * 0.0039 - this.morgageLoanPayback;
+			this.morgageLoanPayment = (this.morgageLoan * 0.0028).toFixed(0);
+			this.morgageLoanInterest = (this.morgageLoan * 0.0039 - this.morgageLoanPayment).toFixed(0);
 
 			this.totalExpenses += this.morgageLoanInterest;
 
@@ -68,7 +68,7 @@ class Calculator {
 
 			this.returnOnInvestment = (((this.netIncomeTaxed * 12) / this.totalInvestment) * 100).toFixed(2);
 
-			this.cashFlow = (this.netIncomeTaxed - this.morgageLoanPayback).toFixed(0);
+			this.cashFlow = (this.netIncomeTaxed - this.morgageLoanPayment).toFixed(0);
 		} else {
 			this.totalInvestment = 0;
 		}
