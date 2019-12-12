@@ -8,8 +8,9 @@ class Calculator {
 		this.mortgageLoan = 0;
 		this.bankLoan = 0;
 
-		this.mortgageLoanPayment = 0;
+		this.mortgageLoanPayback = 0;
 		this.mortgageLoanInterest = 0;
+		this.mortgageLoanPayment = 0;
 
 		this.totalInvestment = 0;
 
@@ -53,8 +54,9 @@ class Calculator {
 			this.totalInvestment += Number((this.mortgageLoan * 0.0145 + 1640).toFixed(0)); //Tingslysningsafgift af  realkreditlån
 			this.totalInvestment += Number((this.mortgageLoan * 0.0015).toFixed(0)); //Omkostninger af realkreditlån
 
-			this.mortgageLoanPayment = Number((this.mortgageLoan * 0.0028).toFixed(0));
-			this.mortgageLoanInterest =  Number((this.mortgageLoan * 0.0039 - this.mortgageLoanPayment).toFixed(0));
+			this.mortgageLoanPayback = Number((this.mortgageLoan * 0.0028).toFixed(0));
+			this.mortgageLoanInterest =  Number((this.mortgageLoan * 0.0039 - this.mortgageLoanPayback).toFixed(0));
+			this.mortgageLoanPayment = Number((this.mortgageLoanPayback + this.mortgageLoanInterest).toFixed(0));
 
 			this.monthlyExpenses += this.mortgageLoanInterest;
 		} else {
@@ -68,7 +70,7 @@ class Calculator {
 
 			this.returnOnInvestment = (((this.netIncome * 12) / this.totalInvestment) * 100).toFixed(2);
 
-			this.cashFlow = (this.netIncome - this.mortgageLoanPayment).toFixed(0);
+			this.cashFlow = (this.netIncome - this.mortgageLoanPayback).toFixed(0);
 		} else {
 			this.totalInvestment = 0;
 		}
